@@ -1,0 +1,59 @@
+.fullscreen-gallery {
+  position: fixed;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.95);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+
+  &.active {
+    display: flex;
+  }
+
+  &.show {
+    opacity: 1;
+  }
+
+  &__wrapper {
+    // background-color: rgba(0, 0, 0, 0.2);
+    // padding: 15px;
+  }
+
+  &__inner {
+    position: relative;
+    min-width: 30%;
+  }
+
+  &__img {
+    position: relative;
+    display: block;
+    max-height: 80vh;
+    max-width: 80vw;
+  }
+
+  &__button {
+    padding: 1em;
+    height: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__figcaption {
+    @include font-header;
+
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    font-size: 1.1rem;
+    color: #ccc;
+    position: absolute;
+    padding: 0.4em 0.8em;
+    bottom: 0;
+  }
+}

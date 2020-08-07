@@ -1,0 +1,17 @@
+.nav-tabs {
+  &__pane {
+    @include list-no-style;
+
+    display: none;
+    visibility: hidden;
+    transition: visibility 2.25s ease-out;
+
+    &.show {
+      visibility: visible;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.page-menu {
+  background-color: #fff;
+
+  &__header-bg {
+    background-image: url(./img/menu2.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 0% 75%;
+    background-size: cover;
+    height: 150px;
+    padding: 0;
+
+    @supports (-webkit-overflow-scrolling: touch) {
+      background-attachment: local;
+      background-position: 0% 70%;
+    }
+  }
+
+  &__header {
+    display: block;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 4rem;
+    line-height: 150px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.1);
+    text-shadow: 0 0 2.5em #000;
+  }
+
+  &__promocards {
+    margin: 3em auto 3em;
+    position: relative;
+  }
+
+  @media (min-width: $scren-md) {
+    &__header-bg {
+      height: 200px;
+    }
+
+    &__header {
+      line-height: 200px;
+    }
+
+    &__promocards {
+      margin-bottom: 3em;
+    }
+  }
+}

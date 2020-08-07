@@ -1,0 +1,38 @@
+doctype html
+html(lang='ru')
+  head
+    title Бар Блуждающий Форвард. Спорт-бар на Петроградской.
+    meta(name='description', content='Локал бар пяти минутах от станции метро Петроградская. Большой выбор пива, вкусная кухня и спортивные трансляции.')
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover')
+    link(rel="apple-touch-icon", sizes="144x144", href="/img/apple-touch-icon.png")
+    link(rel="icon", type="image/png", sizes="32x32", href="/img/favicon-32x32.png")
+    link(rel="icon", type="image/png", sizes="16x16", href="/img/favicon-16x16.png")
+    link(rel="mask-icon", href="/img/safari-pinned-tab.svg", color="#5bbad5")
+    meta(name="msapplication-TileColor", content="#da532c")
+    meta(name="theme-color", content="#ffffff")
+    meta(name='yandex-verification', content='62da7214198b2e35')
+    each css in htmlWebpackPlugin.files.css
+      link(rel='stylesheet' type='text/css' href= css)
+  body.page
+    block body
+    each js in htmlWebpackPlugin.files.js
+      script(type='text/javascript' src= js)
+    if !htmlWebpackPlugin.options.devMode
+      // Yandex.Metrika counter
+      script(type='text/javascript').
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(47755807, "init", {
+        id:47755807,
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        trackHash:true
+        });
+      noscript
+      div
+        img(src='https://mc.yandex.ru/watch/47755807', style='position:absolute; left:-9999px;', alt='')
+      // /Yandex.Metrika counter

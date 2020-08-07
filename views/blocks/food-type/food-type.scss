@@ -1,0 +1,49 @@
+.food-type {
+  @include list-no-style;
+
+  text-align: center;
+
+  &__button {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+
+    &:active {
+      color: inherit;
+    }
+  }
+
+  &__header {
+    font-size: 1.7rem;
+    line-height: 1.1;
+    font-weight: 300;
+    margin: 0.8em;
+    padding: 0 0;
+    cursor: pointer;
+    position: relative;
+
+    &--hidden {
+      display: none;
+    }
+
+    &::before,
+    &::after {
+      content: ' - ';
+    }
+
+    &::before {
+      right: 10px;
+    }
+
+    &::after {
+      left: 10px;
+    }
+  }
+  @media (min-width: $scren-md) {
+    &__header {
+      font-size: 2.1rem;
+    }
+  }
+}

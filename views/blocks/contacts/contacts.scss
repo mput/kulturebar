@@ -1,0 +1,50 @@
+.contacts {
+  background-color: black;
+  margin-bottom: -1px;
+  color: white;
+  padding: 4em 0 6em;
+
+  &__inner {
+    padding: 30px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__section {
+    & + & {
+      margin-top: 3em;
+    }
+  }
+
+  &__header {
+    font-size: 2.4em;
+    margin: 0 0 0.5em 0;
+  }
+
+  &__data {
+    line-height: 1.6;
+    font-weight: 300;
+    color: #999;
+
+    a {
+      text-decoration: none;
+    }
+
+    &--bright {
+      color: white;
+    }
+  }
+
+  &__right {
+    display: none;
+    margin-left: 8em;
+    flex: 0 10 450px;
+  }
+
+  @media (min-width: $scren-md) {
+    &__right {
+      display: block;
+    }
+  }
+}

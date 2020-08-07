@@ -1,0 +1,112 @@
+@mixin list-no-style {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin font-header {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 300;
+}
+
+@mixin font-main {
+  font-family: 'Open Sans', sans-serif;
+}
+
+// breakpoints:
+$scren-sm: 540px;
+$scren-md: 720px;
+$scren-lg: 960px;
+$scren-xl: 1140px;
+$scren-xxl: 1340px;
+
+// colors:
+$color-white: #fefefa;
+
+// hamburgers settings:
+$hamburger-layer-color: $color-white;
+$hamburger-hover-opacity: 0.9;
+
+@import "~normalize.css/normalize.css";
+@import "node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
+@import "./fontello/fontello/css/fontello.css";
+// my components
+@import "blocks/page-hero/page-hero.scss";
+@import "blocks/menu-dropdown/menu-dropdown.scss";
+@import "blocks/site-nav/site-nav.scss";
+@import "blocks/menu-toggle/menu-toggle.scss";
+@import "blocks/page-menu/page-menu.scss";
+@import "blocks/page-about/page-about.scss";
+@import "blocks/carousel/carousel.scss";
+// food
+@import "blocks/food-list/food-list.scss";
+@import "blocks/food-type/food-type.scss";
+@import "blocks/menu-line/menu-line.scss";
+@import "blocks/nav-tabs/nav-tabs.scss";
+@import "blocks/page-lunch/page-lunch.scss";
+@import "blocks/accordion/accordion.scss";
+@import "blocks/photo-arrows/photo-arrows.scss";
+@import "blocks/fullscreen-gallery/fullscreen-gallery.scss";
+@import "blocks/promocards/promocards.scss";
+@import "blocks/lunch-menu/lunch-menu.scss";
+@import "blocks/contacts/contacts.scss";
+@import "blocks/footer/footer.scss";
+
+:root {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  @include font-main;
+
+  line-height: 1.3;
+  margin: 0;
+  background-color: lighten(black, 10%);
+}
+
+h1,
+h2 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 300;
+}
+
+.phone-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.7em 0.8em;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+
+  i::before {
+    font-size: 24px;
+    margin: 0 3px 0 0;
+    transform: translateY(4px);
+  }
+}
+
+.text-link {
+  color: inherit;
+}
+
+.anchor-indent {
+  border-top: 53px solid white;
+  margin-top: -53px;
+  background-clip: padding-box;
+}
+
+.text-hidden {
+  line-height: 0;
+  font-size: 0;
+  color: transparent;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,90 @@
+.food-list {
+
+  background-color: #fffdfc;
+  box-shadow: inset 0 5px 8px 0 rgba(0, 0, 0, 0.15), inset 0 -2px 8px 0 rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  text-align: left;
+
+  &.only {
+    box-shadow: none;
+  }
+
+  &__inner {
+    @include list-no-style;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em 1em 1em;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &__item {
+    padding: 0.2em 3em 1em;
+  }
+
+  &__item-main {
+    display: flex;
+    line-height: 1.4;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    // border: 1px solid green;
+  }
+
+  &__photoicon {
+    position: absolute;
+    display: block;
+    font-family: "fontello"; /* stylelint-disable-line */
+    font-size: 0.9em;
+    color: black;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -25px;
+
+    &:hover i::before {
+      transform: scale(1.3);
+    }
+  }
+
+  &__item-header {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &__item-price {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    &::after {
+      content: "\20BD";
+      font-weight: 400;
+      padding-left: 0.15em;
+    }
+  }
+
+  &__item-description {
+    margin: 0;
+    font-weight: 300;
+    margin-top: 0.25em;
+    font-size: 0.9rem;
+    font-style: italic;
+    max-width: 70%;
+  }
+
+  @media (min-width: $scren-lg) {
+    &__inner {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: $scren-lg;
+      max-width: none;
+    }
+
+    &__item {
+      flex: 1 0 50%;
+      max-width: 50%;
+    }
+  }
+}

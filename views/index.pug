@@ -1,0 +1,176 @@
+extends layout/main.pug
+block body
+  .page-hero
+    .page-hero__logo
+    .page-hero__contacts
+      p
+        a(href="tel:+78129878727").phone-btn #[i.icon-phone]+7 (812) 987-87-27
+      p
+        a(href="https://yandex.ru/maps/-/CBRpuLSFOC", target='_blank').text-link ул. Всеволода Вишневского, 3
+  .page-about.anchor-indent#about
+    .page-about__wrapper
+      .page-about__copy
+        h2.page-about__heading Спортивный бар на Петроградке.
+        p.page-about__text В нашем баре будет одинаково уютно как шумным компаниям, так и любителям тихого спокойного отдыха. Здесь наливают пиво в пинты, а рюмки всегда наполняют до края. Смесь европейской и русской кухни доступна для всех гастрономических гурманов и любителей классических пивных закусок. Мы любим спорт и всегда транслируем футбольные матчи РФПЛ, Лиги Чемпионов, Лиги Европы, а так-же ведущих Европейских чемпионатов.
+      .page-about__gallery.carousel(data-loop='true' data-per-page=1)
+        div.carousel__track
+          .img(style=`background-image: url(${require('./img/page-about/fpeople.jpg')})`)
+          .img(style=`background-image: url(${require('./img/page-about/fpeople2.jpg')})`)
+          .img(style=`background-image: url(${require('./img/page-about/screen.jpg')})`)
+        .carousel__arrows
+          button.carousel__arrow.carousel__arrow--left.photo-arrow--left
+          button.carousel__arrow.carousel__arrow--right.photo-arrow--right
+        .carousel__bullets
+
+  .page-menu.anchor-indent#menu
+    .page-menu__header-bg
+      h2.page-menu__header Меню
+    .nav-tabs
+      - const ch = { food: 'food', beer: 'beer',  drinks: 'drinks'}
+      .menu-line
+        ul.menu-line__inner
+          mixin lineItem(icon, text, link, isActive)
+            li.menu-line__item.nav-tabs__item(class= isActive ? 'active' : '' data-tab=link)
+              a(href=`#${link}`).menu-line__link.nav-tabs__link
+                i.menu-line__icon(class=icon)
+                span.menu-line__text= text
+          +lineItem('icon-fast-food', 'Еда', ch.food, true)
+          +lineItem('icon-beer-1', 'Пивo', ch.beer, false)
+          +lineItem('icon-wine', 'Алкоголь', ch.drinks, false)
+      .nav-tabs__content
+        mixin foodItem(item)
+          li.food-list__item
+            .food-list__item-main
+              if item.img
+                a(href=`img/${item.img}` data-img-section='food' data-img-name=item.img data-description=item.name).food-list__photoicon.fullscreen-gallery__link
+                  i.icon-camera
+              h3.food-list__item-header= item.name
+              p.food-list__item-price= item.price
+            if item.description
+              p.food-list__item-description= item.description
+        mixin foodChapter(idName, types, show, only)
+          ul.nav-tabs__pane(id= idName, class= show ? 'show active' : '')
+            each type in types
+              li.food-type.accordion
+                button.food-type__button.accordion__handler(class=types.length === 1 ? 'food-type__header--hidden' : '')
+                  h2.food-type__header= type.name
+                .food-list.accordion__item(class= only ? 'no-collapse only' : '')
+                  ul.food-list__inner
+                    each item in type.items
+                      +foodItem(item)
+        +foodChapter(ch.food, htmlWebpackPlugin.options.food, true)
+        +foodChapter(ch.beer, htmlWebpackPlugin.options.beer, false, true)
+        +foodChapter(ch.drinks, htmlWebpackPlugin.options.drinks)
+
+    .page-menu__promocards.promocard__wrapper.carousel(data-loop='true')
+      .carousel__track
+        mixin promocard(img, price, name, description)
+          .promocard
+            img(src=`./img/${img}`).promocard__image
+            .promocard__body
+              .promocard__price= price
+              h3.promocard__header= name
+              p.promocard__copy= description
+        +promocard('krevetki.jpg', '600', 'Пинта креветок', 'Целая пинта королевских креветок в нашем особом соусе.')
+        +promocard('burger.jpg', '380', 'Бургер', 'Бургер с большой говяжей котлетой.')
+        +promocard('myasnoy-nabor.jpg', '1500', 'Мясной набор', 'Хватит на компанию из 3-4 человек, и никто точно не уйдёт голодным.')
+        +promocard('tar-tar.jpg', '360', 'Тар-Тар', 'Классический Тар-Тар из говядины.')
+      .carousel__arrows
+        button.carousel__arrow.carousel__arrow--left.photo-arrow--left.promocard__arrows--left
+        button.carousel__arrow.carousel__arrow--right.photo-arrow--right.promocard__arrows--right
+
+  .page-lunch.anchor-indent#lunch
+    .page-lunch__header-bg
+      h2.page-lunch__header Бизнес Ланч
+    .page-lunch__subheader
+      .page-lunch__icon
+        i.icon-lunch
+      .page-lunch__copy
+        .page-lunch__time с 12:00 по 16:00 по будням
+        .page-lunch__price 230
+    .lunch-menu
+      if htmlWebpackPlugin.options.lunchMenu
+        .lunch-menu__header Меню на неделю:
+        .lunch-menu__week
+          mixin lunchDay(day)
+            .lunch-menu__day
+              .lunch-menu__title
+                h3= day.weekday
+                p= day.date
+              ul.lunch-menu__items
+                each item in day.menu
+                  li.lunch-menu__item= item
+          each day in htmlWebpackPlugin.options.lunchMenu
+            +lunchDay(day)
+      else
+        a(href='https://vk.com/@lonestrikerbar', target='_blank').lunch-menu__header.lunch-menu__header--link - Меню на неделю -
+
+  .contacts#contacts
+    .contacts__inner
+      .contacts__left
+        .contacts__section
+          h2.contacts__header Адрес
+          .contacts__data Санкт-Петербург#[br]ул. Всеволода Вишневского 3#[br]метро Петроградская#[br]
+            a.contacts__data--bright(href="mailto:mail@forwardbar.ru") mail@forwardbar.ru#[br]
+            a.contacts__data--bright(href="tel:+78129878727") +7 (812) 987-87-27#[br]
+        .contacts__section
+          h2.contacts__header Время работы
+          table.contacts__data
+            mixin time-row(day, open = '11', close = '1')
+              tr
+                td= day
+                td= `${open}:00`
+                td -
+                td= `${close}:00`
+            +time-row('Пн')
+            +time-row('Вт')
+            +time-row('Ср')
+            +time-row('Чт')
+            +time-row('Пт', '11', '3')
+            +time-row('Сб', '12', '3')
+            +time-row('Вс', '12', '1')
+      .contacts__right
+        .contacts__section
+          h2.contacts__header Карта
+          .contacts__data
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c531ad12f8a28a4ec752203231c23f633a6d5c3d5971a2c01b27c7f890b7344&amp;width=100%25&amp;height=350&amp;lang=ru_RU&amp;scroll=false"></script>
+  footer.footer
+    a(href='#top' data-scroll).footer__backlink.icon-angle-up
+    p.footer__copy
+      | &copy;2019
+      |
+      a(href='https://github.com/mput/').text-link mPut
+
+  nav.site-nav
+    img(src=require('./img/forvard_logo_clean_white.png')).site-nav__logo
+    .menu-dropdown
+      ul.menu-dropdown_item.menu-dropdown__nav-menu
+        li: a(href='#' data-scroll).active Главная
+        li: a(href='#about' data-scroll) О нас
+        li: a(href='#menu' data-scroll) Меню
+        li: a(href='#lunch' data-scroll) Бизнес ланч
+        li: a(href='#contacts' data-scroll) Контакты
+      ul.menu-dropdown_item.menu-dropdown__social-links
+        li
+          a(href='https://www.instagram.com/lonestrikerbar', target='_blank')
+            i.icon-instagram
+        li
+          a(href='https://vk.com/lonestrikerbar', target='_blank')
+            i.icon-vkontakte
+        li
+          a(href='https://ru.foursquare.com/v/бар-блуждающий-форвард/5a78cd7a8e886a3178bd6f36', target='_blank')
+            i.icon-foursquare
+    button.menu-toggle.hamburger.hamburger--squeeze
+      span.hamburger-box
+        span.hamburger-inner
+
+  .fullscreen-gallery
+    .fullscreen-gallery__wrapper
+      figure.fullscreen-gallery__inner
+        img.fullscreen-gallery__img
+        figcaption.fullscreen-gallery__figcaption
+        .fullscreen-gallery__changeButton.photo-arrow--left(data-direction='prev')
+        .fullscreen-gallery__changeButton.photo-arrow--right(data-direction='next')
+    button.fullscreen-gallery__button.hamburger.hamburger--squeeze.is-active
+      span.hamburger-box
+        span.hamburger-inner
