@@ -7,7 +7,7 @@ deploy:
   repo: kulturebar/kulturebar.github.io
   target-branch: master
   email: putintsev@gmail.com
-  # fqdn: forwardbar.ru
+  fqdn: kulturebar.ru
   local-dir: ./dist
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
